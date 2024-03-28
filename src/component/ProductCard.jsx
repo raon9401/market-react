@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 // 1. 상품 이미지
@@ -8,7 +8,11 @@ import { useNavigate } from 'react-router-dom'
 // 5. 신제품 or 기존제품
 
 const ProductCard = ({ item }) => {
+    const [imageLoaded, setImageLoaded] = useState(false);
+
     const navigate = useNavigate()
+
+
     const showDetail = () => {
         navigate(`/product/${item.id}`);
     }
@@ -22,7 +26,17 @@ const ProductCard = ({ item }) => {
                     </div>
                 </div>
                 : <></>}
-            <img className='product-img' src={item?.img} alt="item" />
+            {!imageLoaded && <img className='img-thumbnail' src="/image/thumbnail.png" alt="thumbnail" />}
+
+            {item?.img &&
+                <img
+                    className='product-img'
+                    src={item.img}
+                    alt={item.title}
+                    onLoad={() => setImageLoaded(true)}
+                    style={{ display: imageLoaded ? 'block' : 'none' }}
+                />
+            }
             <div className='choice-text'>
                 {item?.choice === true ? "Conscious choice" : ""}
             </div>

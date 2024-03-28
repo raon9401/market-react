@@ -34,6 +34,10 @@ button {
     align-items: center;
 }
 
+.nav-logo-wrap>img {
+    cursor: pointer;
+}
+
 .menu-wrap {
     display: flex;
     justify-content: center;
@@ -80,6 +84,7 @@ button {
 .product-item-wrap {
     position: relative;
     margin-bottom: 10px;
+    cursor: pointer;
 }
 
 .product-item-wrap:hover {
@@ -94,6 +99,10 @@ button {
 }
 
 .product-item-wrap .product-img {
+    width: 100%;
+}
+
+.product-item-wrap .img-thumbnail {
     width: 100%;
 }
 
