@@ -43,7 +43,7 @@ button {
     justify-content: center;
     align-items: center;
 
-    margin-top: 2rem;
+    margin: 2rem;
 }
 
 .menu-list {
@@ -51,6 +51,8 @@ button {
 
     display: flex;
     gap: 10px;
+
+    margin: 0;
 }
 
 .menu-list>li {
