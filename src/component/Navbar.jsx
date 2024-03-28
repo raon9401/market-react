@@ -4,13 +4,18 @@ import { faUser } from '@fortawesome/free-regular-svg-icons'
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 
-const Navbar = ({ authenticate }) => {
+const Navbar = ({ authenticate, setAuthenticate }) => {
     const navigate = useNavigate();
 
     const menuArr = ["여성", "Divided", "남성", "신생아/유아", "아동", "H&M HOME", "Sale", "지속가능성"];
 
     const goToLogin = () => {
-        navigate('/login')
+        if (authenticate) {
+            setAuthenticate(false);
+            navigate('/')
+        } else {
+            navigate('/login')
+        }
     }
 
     const goToHome = () => {
