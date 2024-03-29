@@ -10,6 +10,7 @@ import Login from './page/Login';
 // import ProductDetail from './page/ProductDetail';
 import Navbar from './component/Navbar';
 import PrivateProute from './routes/PrivateProute';
+import MobileSideMenu from './component/MobileSideMenu';
 
 
 
@@ -28,6 +29,8 @@ function App() {
   // Login 판별 state
   // true : login 됨, false : login 안됨
   const [authenticate, setAuthenticate] = useState(false)
+  const [sideMenu, setSideMenu] = useState(false)
+
 
   useEffect(() => {
     console.log(authenticate);
@@ -35,7 +38,8 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar authenticate={authenticate} setAuthenticate={setAuthenticate}/>
+      <Navbar authenticate={authenticate} setAuthenticate={setAuthenticate} setSideMenu={setSideMenu}/>
+      {sideMenu ? <MobileSideMenu setSideMenu={setSideMenu}/> : <></>}
       <Routes>
         <Route path="/" element={<ProductAll/>}/>
         <Route path="/login" element={<Login setAuthenticate={setAuthenticate}/>}/>
