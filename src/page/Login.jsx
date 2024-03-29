@@ -13,7 +13,7 @@ const Login = ({ setAuthenticate }) => {
     }
 
     return (
-        <Container style={{ width: '30%' }}>
+        <Container className="login-input-wrap">
             <Form onSubmit={(event) => loginUser(event)}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
