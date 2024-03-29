@@ -150,6 +150,10 @@ button {
     padding: 5px;
 }
 
+/* Login */
+.login-input-wrap {
+    width: 30%;
+}
 
 /* Side Menu */
 .side-menu-box {
@@ -199,6 +203,10 @@ button {
 
     .product-item-wrap:hover {
         scale: 100%;
+    }
+
+    .login-input-wrap {
+        width: 70%;
     }
 }
 
