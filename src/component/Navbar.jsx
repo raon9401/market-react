@@ -1,13 +1,13 @@
-import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/free-regular-svg-icons'
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
+import { MENU_ARR } from '../const/ConstArr';
 
-const Navbar = ({ authenticate, setAuthenticate }) => {
+const Navbar = ({ authenticate, setAuthenticate, setSideMenu }) => {
     const navigate = useNavigate();
 
-    const menuArr = ["여성", "Divided", "남성", "신생아/유아", "아동", "H&M HOME", "Sale", "지속가능성"];
+    const menuArr = [...MENU_ARR];
 
     const goToLogin = () => {
         if (authenticate) {
@@ -22,9 +22,26 @@ const Navbar = ({ authenticate, setAuthenticate }) => {
         navigate('/')
     }
 
+    const handleSearch = (event) => {
+        if (event.key === 'Enter') {
+            let keyWord = event.target.value;
+            navigate(`/?q=${keyWord}`);
+        }
+    }
+
+    const handleSideMenu = () => {
+        console.log("good")
+        setSideMenu(true);
+    }
+
+
     return (
         <div>
             <div className='login-wrap'>
+                <button onClick={handleSideMenu} className='side-menu only-mobile'>
+                    <FontAwesomeIcon icon={faBars} />
+                </button>
+
                 <button onClick={goToLogin} className='login-button'>
                     <FontAwesomeIcon icon={faUser} />
                     <span>{authenticate ? "Logout" : "Login"}</span>
@@ -38,7 +55,7 @@ const Navbar = ({ authenticate, setAuthenticate }) => {
                     alt="logo img" />
             </div>
             <div className='menu-wrap'>
-                <ul className='menu-list'>
+                <ul className='menu-list only-web'>
                     {menuArr.map((menu, index) =>
                         <li key={index}>
                             <button>
@@ -49,7 +66,12 @@ const Navbar = ({ authenticate, setAuthenticate }) => {
                 </ul>
                 <div className='search-wrap'>
                     <FontAwesomeIcon icon={faSearch} />
-                    <input className='search-input' type="text" placeholder='제품검색'></input>
+                    <input
+                        className='search-input'
+                        type="text"
+                        placeholder='제품검색'
+                        onKeyUp={(e) => handleSearch(e)}
+                    />
                 </div>
             </div>
         </div>
